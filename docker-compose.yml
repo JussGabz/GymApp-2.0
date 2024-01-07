@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  backend:
+    restart: on-failure:10
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: 'python manage.py runserver 0.0.0.0:8000'
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres-db
+    env_file:
+      - .env
+  
+  postgres-db:
+    image: postgres:14-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - ~/app/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=gymapp_admin
+      - POSTGRES_USER=gymapp_admin
+      - POSTGRES_DB=gymapp_admin_db
+      - POSTGRES_PORTS=5432:5432
+  
