@@ -1,7 +1,7 @@
 import pytest 
 from django.contrib.auth import get_user_model
 from rest_framework.test import APIClient
-from .models import Exercise
+from ..models import Exercise, WorkoutPlan
 
 
 User = get_user_model()
@@ -19,9 +19,16 @@ def api_client(test_user):
 
 @pytest.fixture
 def test_exercise(db, test_user):
-    exercise = Exercise.objects.get_or_create(
+    exercise = Exercise.objects.create(
         name="test_exercise",
         target_area="test_target_area",
     )
-
     return exercise
+
+@pytest.fixture
+def test_workout_plan(db, test_user):
+    workoutplan = WorkoutPlan.objects.create(
+        name="test_workout_plan",
+        workout_type="test_type",
+    )
+    return workoutplan
