@@ -16,6 +16,23 @@ class WorkoutPlan(models.Model):
             raise e
         return exercise
 
+    def remove_exercise(self, exercise):
+
+        # Check if exercise is apart of workout plan 
+        exercise_exists = self.exercise_set.filter(name=exercise.name).first()
+        # If apart of workout plan 
+
+        if not exercise_exists:
+            print("Exercise not in workout plan")
+            return
+
+        # Remove Exercise from Workoutplan
+        try:
+            self.exercise_set.remove(exercise)
+            print("Exercise removed from Workout Plan")
+        except Exception as e:
+            raise e
+        
 
 class Exercise(models.Model):
     name = models.CharField(max_length=50, null=False)
