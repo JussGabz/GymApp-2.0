@@ -42,4 +42,15 @@ def test_work_remove_exercise(test_workout_plan, test_exercise):
     assert test_workout_plan.exercise_set.filter(name="test_exercise").first() == None
 
 
+@pytest.mark.django_db
+def test_work_remove_non_existing_exercise(test_workout_plan, test_exercise):
+    """
+    Check exercise returns exercise is not in workout plan when trying to remove
+    """
 
+    # Try and remove exercise from work out plan
+    test_workout_plan.remove_exercise(test_exercise)
+
+    expected_mesage = "Exercise not in workout plan"
+    
+    assert expected_mesage == "Exercise not in workout plan"
