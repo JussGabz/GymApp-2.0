@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'gym_app.admin_app',
-    # 'admin_app.apps.AdminAppConfig'
 ]
 
 
@@ -115,6 +114,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
+DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S'
+# DATETIME_INPUT_FORMATS = "%Y-%m-%d %H:%M:%S"
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -122,6 +124,10 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+
+
+
 
 
 # Static files (CSS, JavaScript, Images)
