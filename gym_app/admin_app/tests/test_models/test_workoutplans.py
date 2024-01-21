@@ -1,7 +1,5 @@
 import pytest
 
-from gym_app.admin_app.models import WorkoutPlan, Exercise
-
 @pytest.mark.django_db
 def test_workoutplan_model(test_workout_plan):
 

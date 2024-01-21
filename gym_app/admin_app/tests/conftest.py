@@ -26,7 +26,7 @@ def test_exercise(db, test_user):
     return exercise
 
 @pytest.fixture
-def test_workout_plan(db, test_user):
+def test_workout_plan(db):
     workoutplan = WorkoutPlan.objects.create(
         name="test_workout_plan",
         workout_type="test_type",
