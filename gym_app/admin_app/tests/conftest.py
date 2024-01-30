@@ -2,6 +2,7 @@ import pytest
 from django.contrib.auth import get_user_model
 from rest_framework.test import APIClient
 from ..models import Exercise, WorkoutPlan
+from django.utils import timezone, dateformat
 
 
 User = get_user_model()
@@ -32,3 +33,24 @@ def test_workout_plan(db):
         workout_type="test_type",
     )
     return workoutplan
+
+@pytest.fixture
+def create_api_object():
+    """
+    Helper function to create an API object via a POST request.
+
+    Args:
+        api_client (APIClient): The Django REST framework test client.
+        api_endpoint (str): The API endpoint to send the POST request.
+        request_data (dict): The data to be sent in the POST request.
+
+    Returns:
+        Response: The response object from the API call.
+
+    """
+
+    def _create_api_object(api_client, api_endpoint, request_data):
+        return api_client.post(api_endpoint, request_data, format='json')
+
+    return _create_api_object
+
