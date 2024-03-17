@@ -23,3 +23,4 @@ class TestExerciseSerializer(TestCase):
         self.assertTrue(serializer.is_valid())
         instance = serializer.save()
         self.assertIsInstance(instance, Exercise)
+
