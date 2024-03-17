@@ -16,6 +16,18 @@ class ExerciseSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'target_area', 'date_added']
 
 class WorkoutPlanSerializer(serializers.ModelSerializer):
+
+    # exercises = serializers.PrimaryKeyRelatedField(many=True, queryset=Exercise.objects.all(), source="exercise_set", default=[])
+    exercises = ExerciseSerializer(many=True, read_only=True)
     class Meta:
         model = WorkoutPlan
-        fields = ['id', 'name', 'workout_type', 'date_added']
+        fields = ['id', 'name', 'workout_type', 'date_added', 'exercises']
+        depth = 1
+    
+    # # When Creating new Workout Plan , Use existing workout plan by PK
+    # def create(self, validated_data):
+    #     # Get existing exercise
+    #     exercise_data = validated_data.pop('exercises')
+    #     print(exercise_data)
+
+    
