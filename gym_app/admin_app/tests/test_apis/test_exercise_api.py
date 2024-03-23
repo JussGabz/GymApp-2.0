@@ -1,17 +1,22 @@
 import pytest
 from rest_framework.test import APIClient
 from django.utils import timezone, dateformat
+from rest_framework.exceptions import ErrorDetail
 
-
+endpoint = '/exercises/'
 @pytest.mark.django_db
-@pytest.mark.parametrize("api_endpoint, request_data, expected_response", [
-    ('/exercises/', {'name':'New Exercise', 'target_area': "Test_Area"}, {
+@pytest.mark.parametrize("api_endpoint, request_data, expected_response, error_details", [
+    (endpoint, {'name':'New Exercise', 'target_area': "Test_Area"}, {
         'id': 1,
         'name': 'New Exercise',
         'target_area': 'Test_Area',
-    })
+    }, None),
+    (endpoint, {'name':'New Exercise'}, None,
+    {'target_area': [ErrorDetail(string='This field is required.', code='required')]}),
+    (endpoint, {'target_area': "Test_Area"}, None,
+     {'name': [ErrorDetail(string='This field is required.', code='required')]}),
 ])
-def test_exercise_api_create(create_api_object, api_endpoint, request_data, expected_response):
+def test_exercise_api_create(create_api_object, api_endpoint, request_data, expected_response, error_details):
     """
     Test the creation of an object via API.
 
@@ -31,18 +36,23 @@ def test_exercise_api_create(create_api_object, api_endpoint, request_data, expe
 
     # Get API Client()
     client = APIClient()
-
-    expected_date = dateformat.format(timezone.now(), 'Y-m-d H:i:s')
     response = create_api_object(client, api_endpoint, request_data)
 
 
-    assert response.data['id'] == expected_response['id']
-    assert response.data['name'] == expected_response['name']
-    assert response.data['target_area'] == expected_response['target_area']
-    assert 'date_added' in response.data
-    assert response.data['date_added'] == expected_date
+    if error_details is not None:
+        assert response.status_code == 400
+        assert response.data == error_details
+    else:
+        print(response)
+        expected_date = dateformat.format(timezone.now(), 'Y-m-d H:i:s')
+        assert response.data['id'] == expected_response['id']
+        assert response.data['name'] == expected_response['name']
+        assert response.data['target_area'] == expected_response['target_area']
+        assert 'date_added' in response.data
+        assert response.data['date_added'] == expected_date
+        assert response.status_code == 201
+    
 
-    assert response.status_code == 201
 
 
 @pytest.mark.django_db
