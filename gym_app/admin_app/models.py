@@ -17,8 +17,5 @@ class WorkoutPlan(models.Model):
     name = models.CharField(max_length=50)
     workout_type = models.CharField(max_length=50)
     date_added = models.DateTimeField(auto_now_add=True)
+    created_by = models.CharField(max_length=50, null=True)
     exercises = models.ManyToManyField(Exercise)
-
-
-
-    
