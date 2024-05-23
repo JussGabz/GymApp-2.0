@@ -1,8 +1,14 @@
 import pytest
+from rest_framework.test import APITestCase
 
 from gym_app.admin_app.models import Exercise, WorkoutPlan
+from django.contrib.auth.models import User
  
+class WorkoutPlanViewSetTests(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="test_user", password="test_password")
 
+    def create 
 
 @pytest.mark.django_db
 def test_workoutplan_add_exercise():
@@ -28,13 +34,18 @@ def test_workoutplan_model():
     # Name is required
     # Workout is required
 
-    # Create Model
+    default_user.save()
+
     new_workoutplan = WorkoutPlan(
-        workout_type="Chest"
+        name="Push Ups",
+        workout_type="Chest",
+        created_by = default_user
     )
 
     # Save to database
     new_workoutplan.save()
+
+    # assert
 
     # Retrieved object from database
     retrieved_instance = WorkoutPlan.objects.get(name="")
