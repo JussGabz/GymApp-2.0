@@ -18,9 +18,11 @@ class ExerciseSerializer(serializers.ModelSerializer):
 class WorkoutPlanSerializer(serializers.ModelSerializer):
 
     exercises = ExerciseSerializer(many=True, read_only=True)
+    created_by = serializers.PrimaryKeyRelatedField(read_only=True)
+
     class Meta:
         model = WorkoutPlan
         fields = ['id', 'name', 'workout_type', 'date_added', 'created_by', 'exercises']
-    
+
 
     
