@@ -2,7 +2,8 @@ from django.contrib.auth.models import User
 from .models import Exercise, WorkoutPlan
 from rest_framework import permissions, viewsets
 from .permissions import IsUnAuthenticatedReadOnly
- 
+from .utils import EnablePartialUpdateMixin
+
 from gym_app.admin_app.serializers import UserSerializer, ExerciseSerializer, WorkoutPlanSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -15,7 +16,7 @@ class ExerciseViewSet(viewsets.ModelViewSet):
     serializer_class = ExerciseSerializer
     permission_classes = [permissions.IsAuthenticated | IsUnAuthenticatedReadOnly]
 
-class WorkoutPlanViewSet(viewsets.ModelViewSet):
+class WorkoutPlanViewSet(EnablePartialUpdateMixin, viewsets.ModelViewSet):
     queryset = WorkoutPlan.objects.all()
     serializer_class = WorkoutPlanSerializer
     permission_classes = [permissions.IsAuthenticated | IsUnAuthenticatedReadOnly]
