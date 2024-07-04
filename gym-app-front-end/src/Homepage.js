@@ -1,17 +1,14 @@
 // HomePage.js
 import React from 'react';
 import Menu from './Menu';
-import WorkoutPage from './WorkoutPage'
-import ExercisePage from './ExercisePage'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
+import Exercises from './component/exercises';
 
 const HomePage = () => {
   return (
     <div>
       < Menu />
       <h1>Juss Gym</h1>
-      <p>Workout with JussGym</p>
+      <h5>Workout with JussGym</h5>
       {/* Add more content as needed */}
       <video width={800} height={500} controls loop autoPlay muted>
         <source
@@ -19,6 +16,10 @@ const HomePage = () => {
           type='video/mp4'
         />
       </video>
+
+      <div>
+      < Exercises />
+      </div>
     </div>
   );
 };

@@ -35,7 +35,6 @@ function Exercise() {
             <div style={{ margin: "2rem"}}>
                 <h1 style={{ textAlign: 'center'}}>Exercises</h1>
             </div>
-            
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                 {data ? (
                     data.results.map((item) => (
@@ -44,6 +43,7 @@ function Exercise() {
                                 <img src="images/juss-gym-logo.png" className="card-img-top" alt="..." />
                                 <div className="card-body">
                                     <h5 className="card-title">Exercise Name: {item.name}</h5>
+                                    <h6 className="card-title">Target Area: {item.name}</h6>
                                 </div>
                             </div>
                         </div>
