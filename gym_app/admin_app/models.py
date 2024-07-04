@@ -6,9 +6,24 @@ from django.contrib.auth.models import User
 
 
 class Exercise(models.Model):
+    CHEST = "CHEST"
+    LEGS = "LEGS"
+    BICEPS = "BICEPS"
+    TRICEPS = "TRICEPS"
+    SHOULDERS = "SHOULDERS"
+    BACK = "BACK"
+
+    TARGET_AREA_CHOICES = [
+        (CHEST, "Chest"),
+        (LEGS, "Legs"),
+        (BICEPS, "Biceps"),
+        (TRICEPS, "Triceps"),
+        (SHOULDERS, "Shoulders"),
+        (BACK, "Back"),
+    ]
     # TODO - Add Date Updated Field for exercise
     name = models.CharField(max_length=50, null=False, unique=True)
-    target_area = models.CharField(max_length=50)
+    target_area = models.CharField(max_length=50, choices=TARGET_AREA_CHOICES)
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __repr__(self) -> str:
@@ -20,9 +35,26 @@ class Exercise(models.Model):
 
 class WorkoutPlan(models.Model):
 
+    CARDIO = "CARDIO"
+    HIIT = "HIIT"
+    LIIT = "LIIT"
+    OTHER = "OTHER"
+    STRENGTH = "STRENGTH"
+    HYPERTROPHY = "HYPERTROPHY"
+
+    TARGET_AREA_CHOICES = [
+        (CARDIO, "Cardio"),
+        (HIIT, "HIIT"),
+        (LIIT, "LIIT"),
+        (OTHER, "Other"),
+        (STRENGTH, "Strength"),
+        (HYPERTROPHY, "Hypertrophy"),
+    ]
+
+
     # TODO - Add Date Updated Field for exercise
     name = models.CharField(max_length=50, null=False)
-    workout_type = models.CharField(max_length=50)
+    workout_type = models.CharField(max_length=50, choices=TARGET_AREA_CHOICES)
     date_added = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     exercises = models.ManyToManyField(Exercise, related_name='exercises')
