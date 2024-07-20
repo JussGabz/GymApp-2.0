@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('admin_app', '0003_remove_exercise_workoutplans_workoutplan_exercises'),
+        ("admin_app", "0003_remove_exercise_workoutplans_workoutplan_exercises"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='workoutplan',
-            name='created_by',
+            model_name="workoutplan",
+            name="created_by",
             field=models.CharField(max_length=50, null=True),
         ),
     ]

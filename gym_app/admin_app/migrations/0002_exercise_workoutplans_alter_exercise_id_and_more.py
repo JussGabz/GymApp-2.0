@@ -6,23 +6,27 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('admin_app', '0001_initial'),
+        ("admin_app", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='exercise',
-            name='workoutplans',
-            field=models.ManyToManyField(to='admin_app.workoutplan'),
+            model_name="exercise",
+            name="workoutplans",
+            field=models.ManyToManyField(to="admin_app.workoutplan"),
         ),
         migrations.AlterField(
-            model_name='exercise',
-            name='id',
-            field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
+            model_name="exercise",
+            name="id",
+            field=models.BigAutoField(
+                auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+            ),
         ),
         migrations.AlterField(
-            model_name='workoutplan',
-            name='id',
-            field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
+            model_name="workoutplan",
+            name="id",
+            field=models.BigAutoField(
+                auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+            ),
         ),
     ]
