@@ -25,6 +25,7 @@ class WorkoutPlanSerializer(serializers.ModelSerializer):
         many=True, queryset=Exercise.objects.all(), write_only=True
     )
     created_by = serializers.StringRelatedField(read_only=True)
+    date_added = serializers.DateTimeField(read_only=True, format=DATETIME_FORMAT)
 
     class Meta:
         model = WorkoutPlan
