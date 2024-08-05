@@ -5,9 +5,12 @@ from .permissions import IsUnAuthenticatedReadOnly, IsAdminOrReadonly
 from .utils.mixin_utils import EnablePartialUpdateMixin
 from django_filters.rest_framework import DjangoFilterBackend
 from .filters import ExerciseFilter, WorkOutPlanFilter
-from rest_framework.permissions import DjangoModelPermissions
 from rest_framework.decorators import action
-from rest_framework.response import Response
+from .viewset_actions.workout_plan_actions import (
+    get_user_workout_plans,
+    post_user_workout_plans,
+    get_user_workout_plan,
+)
 
 
 from gym_app.admin_app.serializers import (
@@ -41,18 +44,15 @@ class WorkoutPlanViewSet(EnablePartialUpdateMixin, viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
-    
-    @action(detail=False, methods=['get'], url_path="myworkoutplans")
-    def get_my_workouts(self, request):
-        user = request.user
-        workouts = WorkoutPlan.objects.filter(created_by=user)
-        serializer = self.get_serializer(workouts, many=True)
-        return Response(serializer.data)
-    
-    @action(detail=True, methods=['get'], url_path='myworkoutplans')
-    def get_my_workout_plan_by_id(self, request, pk):
-        workout_plan = WorkoutPlan.objects.get(id=pk)
-        serializer = self.get_serializer(workout_plan)
-        return Response(serializer.data)
-    
-    @action(detail=True, methods=['post'], url_path='myworkoutplans')
+
+    @action(detail=False, methods=["get", "post"], url_path="myworkoutplans")
+    def my_workout_plans_actions(self, request, *args, **kwargs):
+
+        if request.method == "POST":
+            return post_user_workout_plans(request)
+        elif request.method == "GET":
+            return get_user_workout_plans(request)
+
+    @action(detail=True, methods=["get"], url_path="myworkoutplans")
+    def my_workout_plan_actions(self, request, *args, **kwargs):
+        return get_user_workout_plan(request, **kwargs)
