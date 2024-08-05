@@ -41,7 +41,6 @@ class TestExerciseViewSet:
 
         assert response.status_code == 403
 
-
     def test_exercise_delete_authenticated_user(self, api_client):
         url = reverse("exercise-detail", kwargs={"pk": self.exercise.id})
 
