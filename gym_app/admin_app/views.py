@@ -11,8 +11,6 @@ from .viewset_actions.workout_plan_actions import (
     post_user_workout_plans,
     get_user_workout_plan,
 )
-
-
 from gym_app.admin_app.serializers import (
     UserSerializer,
     ExerciseSerializer,
@@ -53,6 +51,6 @@ class WorkoutPlanViewSet(EnablePartialUpdateMixin, viewsets.ModelViewSet):
         elif request.method == "GET":
             return get_user_workout_plans(request)
 
-    @action(detail=True, methods=["get"], url_path="myworkoutplans")
-    def my_workout_plan_actions(self, request, *args, **kwargs):
+    @action(detail=True, methods=["get", "delete", "put"], url_path="myworkoutplans")
+    def my_workout_plan_action(self, request, *args, **kwargs):
         return get_user_workout_plan(request, **kwargs)
