@@ -8,8 +8,17 @@ function Exercise() {
     useEffect(() => {
         const fetchData = async () => {
             try {
+            
+            const token = localStorage.getItem('access_token')
             // Fetch data from your Django endpoint (e.g., list action of your ViewSet)
-            const response = await fetch('http://127.0.0.1:8000/exercises/');
+            const response = await fetch('http://127.0.0.1:8000/exercises/', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+            console.log(response)
             
             // Check if the response is successful
             if (!response.ok) {
@@ -18,7 +27,6 @@ function Exercise() {
             
             // Parse the JSON response
             const jsonData = await response.json();
-            
             // Update the component state with the fetched data
             setData(jsonData);
             } catch (error) {
