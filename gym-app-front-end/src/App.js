@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Homepage from './Homepage';
 import WorkoutPage from './WorkoutPage'
 import ExercisePage from './ExercisePage'
+import LogInPage from './LogInPage';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route exact path="/" element={<Homepage />} />
         <Route path="/workouts" Component={WorkoutPage} />
         <Route path="/exercises" Component={ExercisePage} />
+        <Route path="/login" Component={LogInPage} />
       </Routes>
     </Router>
   );
