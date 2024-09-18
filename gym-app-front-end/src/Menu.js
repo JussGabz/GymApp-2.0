@@ -17,6 +17,9 @@ const Menu = () => {
               <li className="nav-item">
                 <a className="nav-link" href="/exercises">Exercises</a>
               </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/login">Log In</a>
+              </li>
               {/* Add more menu items as needed */}
             </ul>
           </div>
