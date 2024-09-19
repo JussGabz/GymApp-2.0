@@ -8,8 +8,16 @@ function WorkoutPlan() {
     useEffect(() => {
         const fetchData = async () => {
             try {
+
+            const token = localStorage.getItem('access_token')
             // Fetch data from your Django endpoint (e.g., list action of your ViewSet)
-            const response = await fetch('http://127.0.0.1:8000/workoutplans/');
+            const response = await fetch('http://127.0.0.1:8000/workoutplans/', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                }
+            });
             
             // Check if the response is successful
             if (!response.ok) {
