@@ -17,3 +17,5 @@ tzdata==2023.4
 pytest-xdist==3.5.0
 coverage==7.6.0
 black==24.4.2
+django_filter==24.2
+djangorestframework-simplejwt==5.3.1
