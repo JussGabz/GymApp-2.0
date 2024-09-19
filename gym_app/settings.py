@@ -28,8 +28,6 @@ SECRET_KEY = "django-insecure-$=-k3@=*g714p&r==0&2@xi2zr7@5wqi4$osq422tgrdx^*i=t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -49,25 +47,40 @@ INSTALLED_APPS = [
 
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.common.CommonMiddleware",
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOWS_CREDENTIALS = True
+
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:3000",  # Your React app's URL
+]
+
+
+# CORS_ORIGIN_WHITELIST = [
+#     'http://127.0.0.1:3000',
+# ]
+
+CORS_ALLOW_HEADERS = [
+    "content-type",
+    "x-csrftoken",
+    "authorization",
+]
 
 ROOT_URLCONF = "gym_app.urls"
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -149,4 +162,10 @@ REST_FRAMEWORK = {
     ),
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
 }
+
+LOGIN_REDIRECT_URL = "/"
+LOGIN_URL = "login"
