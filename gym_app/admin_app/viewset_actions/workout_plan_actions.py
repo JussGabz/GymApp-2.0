@@ -1,7 +1,9 @@
 from gym_app.admin_app.models import WorkoutPlan
 from gym_app.admin_app.serializers import WorkoutPlanSerializer
+from gym_app.admin_app.filters import WorkOutPlanFilter
 from rest_framework.response import Response
 from rest_framework import status
+from django.shortcuts import get_object_or_404
 
 
 def get_user_workout_plans(request):
@@ -10,7 +12,15 @@ def get_user_workout_plans(request):
     """
     user = request.user
     workoutplans = WorkoutPlan.objects.filter(created_by=user)
-    serializer = WorkoutPlanSerializer(workoutplans, many=True)
+
+    # Grab FilterSet Class
+    filterset = WorkOutPlanFilter(request.GET, queryset=workoutplans)
+
+    # If Filterset is not valid, return error
+    if not filterset.is_valid():
+        return Response(filterset.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    serializer = WorkoutPlanSerializer(filterset.qs, many=True)
     return Response(serializer.data)
 
 
@@ -20,16 +30,9 @@ def get_user_workout_plan(request, **kwargs):
     """
     user = request.user
     workoutplan_id = kwargs["pk"]
-
-    try:
-        workoutplan = WorkoutPlan.objects.get(id=workoutplan_id, created_by=user)
-        serializer = WorkoutPlanSerializer(workoutplan)
-        return Response(serializer.data)
-    except WorkoutPlan.DoesNotExist:
-        return Response(
-            f"Workout Plan {workoutplan_id} Does Not Exist",
-            status=status.HTTP_404_NOT_FOUND,
-        )
+    workoutplan = get_object_or_404(WorkoutPlan, pk=workoutplan_id, created_by=user)
+    serializer = WorkoutPlanSerializer(workoutplan)
+    return Response(serializer.data)
 
 
 def post_user_workout_plans(request):
