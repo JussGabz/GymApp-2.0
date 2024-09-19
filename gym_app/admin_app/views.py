@@ -16,12 +16,20 @@ from gym_app.admin_app.serializers import (
     ExerciseSerializer,
     WorkoutPlanSerializer,
 )
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework import generics
+
+
+class CreateUserView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [AllowAny]
 
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by("-date_joined")
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated, ]
 
 
 class ExerciseViewSet(viewsets.ModelViewSet):
