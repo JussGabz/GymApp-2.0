@@ -2,24 +2,21 @@
 import React from 'react';
 import Menu from './Menu';
 import Exercises from './component/exercises';
+import ImageSlideShow from './component/ImageSlideShow';
+import ExerciseGrid from './component/excercise_grid';
+import Footer from './component/footer';
 
 const HomePage = () => {
   return (
     <div>
-      < Menu />
-      <h1>Juss Gym</h1>
-      <h5>Workout with JussGym</h5>
-      {/* Add more content as needed */}
-      <video width={800} height={500} controls loop autoPlay muted>
-        <source
-          src='https://d164p06em7ia.cloudfront.net/C0201.MP4'
-          type='video/mp4'
-        />
-      </video>
-
-      <div>
-      < Exercises />
+      <div>< Menu /></div>
+      <div><ImageSlideShow /></div>
+      <div style={{backgroundColor: "black", textAlign: "center", paddingTop: "10px"}}>
+          <h1 style={{color: "white"}}>Workout Vlogs</h1>
+          <div><ExerciseGrid /></div>
       </div>
+      <div>< Exercises /></div>
+      <div> <Footer /></div>
     </div>
   );
 };
