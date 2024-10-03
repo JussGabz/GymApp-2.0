@@ -57,7 +57,7 @@ function WorkoutPlan() {
                                             {exercise.name}
                                         </p>
                                     ))}
-                                    <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                    <p className="card-text"><small className="text-muted">Date Added: {item.date_added}</small></p>
                                     <p className="card-text"><small className="text-muted"> Created by: {item.created_by}</small></p>
                                 </div>
                             </div>
