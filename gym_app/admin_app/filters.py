@@ -13,7 +13,8 @@ class ExerciseFilter(django_filters.FilterSet):
 
 class WorkOutPlanFilter(django_filters.FilterSet):
     workout_type = django_filters.ChoiceFilter(choices=WORKOUT_TYPE_CHOICES)
+    name = django_filters.CharFilter(lookup_expr="icontains")
 
     class Meta:
         model = WorkoutPlan
-        fields = ("workout_type",)
+        fields = ("workout_type", "name")
