@@ -23,7 +23,7 @@ jobs:
     # Build the Docker image
     - name: Build Docker Image
       run: |
-        docker build -t .
+        docker build -t gym-app-2-backend .
 
     # Deploy to EC2
     - name: Deploy to EC2
