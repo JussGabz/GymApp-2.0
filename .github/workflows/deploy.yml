@@ -33,4 +33,5 @@ jobs:
         docker rm gym-app-2-backend || true
         docker pull gym-app-2-backend:latest
         docker run -d -p 80:80 --name gym-app-2-backend
+        docker ps -a
         EOF
