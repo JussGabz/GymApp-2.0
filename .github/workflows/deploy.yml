@@ -29,9 +29,9 @@ jobs:
     - name: Deploy to EC2
       run: |
         ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} << 'EOF'
-        docker stop gym-app-2-backend || true
-        docker rm gym-app-2-backend || true
-        docker pull gym-app-2-backend:latest
-        docker run -d -p 80:80 --name gym-app-2-backend
+        docker stop gym-app-20-backend || true
+        docker rm gym-app-20-backend || true
+        docker pull gym-app-20-backend:latest
+        docker run -d -p 80:80 --name gym-app-20-backend
         docker ps -a
         EOF
