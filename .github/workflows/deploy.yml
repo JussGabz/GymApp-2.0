@@ -23,7 +23,7 @@ jobs:
     # Build the Docker image
     - name: Build Docker Image
       run: |
-        docker build -t my-docker-app .
+        docker build -t .
 
     # Deploy to EC2
     - name: Deploy to EC2
