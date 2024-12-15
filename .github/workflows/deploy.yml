@@ -31,7 +31,7 @@ jobs:
         ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} << 'EOF'
         docker stop gymapp-20-backend-1 || true
         docker rm gymapp-20-backend-1 || true
-        docker pull gymapp-20-backend-1:latest
-        docker run -d -p 80:80 --name gymapp-20-backend-1
+        docker pull gymapp-20-backend:latest
+        docker run -d -p 80:80 --name gymapp-20-backend-1 gymapp-20-backend
         docker ps -a
         EOF
