@@ -23,7 +23,7 @@ jobs:
     # Connect to EC2 and pull changes
     - name: Deploy to EC2 Instance
       run: |
-        ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_PUBLIC_IP }} << EOF
+        ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} << EOF
           cd /home/ec2-user/GymApp-2.0
           git pull origin main
 
