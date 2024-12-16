@@ -64,8 +64,10 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",  # Your React app's URL
 ]
 
-ALLOWED_HOSTS = ["172.31.22.178", "jussgym-lb-1340364989.eu-west-2.elb.amazonaws.com"]
-
+ALLOWED_HOSTS = [
+    "172.31.22.178",
+    "ec2-18-132-198-72.eu-west-2.compute.amazonaws.com"
+]
 
 # CORS_ORIGIN_WHITELIST = [
 #     'http://127.0.0.1:3000',
