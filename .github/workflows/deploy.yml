@@ -1,40 +1,31 @@
-name: Deploy to EC2
+name: Deploy Docker Compose to EC2
 
 on:
   push:
     branches:
-      - main  # Trigger the workflow on push to the main branch
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    # Checkout the repository
-    - name: Checkout code
+    - name: Checkout Repository
       uses: actions/checkout@v3
 
-    # Set up SSH agent and add the private key
-    - name: Setup SSH
-      uses: webfactory/ssh-agent@v0.7.0
+    - name: Set up SSH Agent
+      uses: webfactory/ssh-agent@v0.8.1
       with:
-        ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+        ssh-private-key: ${{ secrets.EC2_KEY }}
 
-    # Connect to EC2 and pull changes
-    - name: Deploy to EC2 Instance
+    - name: Transfer Files to EC2
       run: |
-        ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} << EOF
-          cd /home/ec2-user/GymApp-2.0
-          git pull origin main
+        scp -o StrictHostKeyChecking=no -r ./docker-compose.yml ./app ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/${{ secrets.EC2_USER }}/app
 
-          # Ensure the environment variables file exists
-          if [ ! -f .env ]; then
-            echo "Environment file not found! Exiting."
-            exit 1
-          fi
-
-          # Use docker-compose to pull, build, and restart the app
+    - name: Deploy with Docker Compose
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << EOF
+          cd /home/${{ secrets.EC2_USER }}/app
           docker-compose down
-          docker-compose pull
           docker-compose up -d --build
         EOF
