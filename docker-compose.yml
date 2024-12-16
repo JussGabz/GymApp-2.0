@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: 'python manage.py runserver 0.0.0.0:8000'
+    command: 'gunicorn --workers 3 --bind 127.0.0.1:8000 gym_app.wsgi:application'
     ports:
       - 8000:8000
     volumes:
