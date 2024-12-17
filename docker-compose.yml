@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     command: >
-      "python manage.py collectstatic --noinput &&
+      sh -c "python manage.py collectstatic --noinput &&
       gunicorn --workers 3 --bind 0.0.0.0:8000 gym_app.wsgi:application"
     ports:
       - 8000:8000
