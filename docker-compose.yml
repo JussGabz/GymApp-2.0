@@ -4,11 +4,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: 'gunicorn --workers 3 --bind 0.0.0.0:8000 gym_app.wsgi:application'
+    command: >
+      "python manage.py collectstatic --noinput &&
+      gunicorn --workers 3 --bind 0.0.0.0:8000 gym_app.wsgi:application"
     ports:
       - 8000:8000
     volumes:
       - .:/app
+      - static_volume:/app/staticfiles
     depends_on:
       postgres-db:
         condition: service_healthy
