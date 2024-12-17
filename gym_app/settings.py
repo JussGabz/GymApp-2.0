@@ -66,7 +66,7 @@ CORS_ALLOWED_ORIGINS = [
 
 ALLOWED_HOSTS = [
     "172.31.22.178",
-    "ec2-18-132-198-72.eu-west-2.compute.amazonaws.com"
+    "ec2-18-134-249-226.eu-west-2.compute.amazonaws.com"
 ]
 
 # CORS_ORIGIN_WHITELIST = [
