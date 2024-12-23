@@ -34,15 +34,7 @@ services:
       timeout: 3s
       retries: 5
       start_period: 3s
-    command: >
-      sh -c "sudo chown -R ec2-user:ec2-user /home/***/app/postgres"
 
 volumes:
   static_volume:
-  app-data:
-    driver: local
-    driver_opts:
-      o: bind
-      device: /home/***/app
-      type: none
 
