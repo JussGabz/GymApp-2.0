@@ -34,6 +34,8 @@ services:
       timeout: 3s
       retries: 5
       start_period: 3s
+    command: >
+      sh -c "sudo chown -R $(whoami):$(whoami) /home/***/app/postgres"
 
 volumes:
   static_volume:
