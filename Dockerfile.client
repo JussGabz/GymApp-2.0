@@ -1,0 +1,9 @@
+# Build step #1: build the React front end
+FROM node:16-alpine AS build-step
+WORKDIR /app
+ENV PATH /app/node_modules/.bin:$PATH
+COPY gym-app-front-end/package.json ./
+COPY gym-app-front-end/src ./src
+COPY gym-app-front-end/public ./public
+RUN npm install
+CMD ["npm", "start"]
