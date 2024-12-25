@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
 import Menu from './Menu';
-import Exercises from './component/exercises';
+import Exercises from './component/Exercises/Exercises'
 
 const ExercisePage = () => {
     return (

@@ -1,36 +1,7 @@
 import React, { useState, useEffect } from 'react';
-
-// Re-usable SearchBar Component
-const SearchBar = ({ onSearch }) => (
-    <form onSubmit={(e) => { e.preventDefault(); onSearch(); }}>
-        <div className='input-group mb-3'>
-            <input
-                type='text'
-                className='form-control'
-                placeholder='Search workout plans'
-                onChange={(e) => onSearch(e.target.value)}
-            />
-            <button className='btn btn-outline-secondary' type='submit'>Search</button>
-        </div>
-    </form>
-)
-
-// Reusable WorkoutCard Component
-const WorkoutCard = ({ workout }) => (
-    <div className='col'>
-        <div className='card h-100'>
-            <img src='images/juss-gym-logo.png' className='card-img-top' alt='...' />
-            <div className='card-body'>
-                <h5 className='card-title'>Workout Plan: {workout.name}</h5>
-                {workout.exercises.map(exercise => (
-                    <p key={exercise.id} className='card-text'>{exercise.name}</p>
-                ))}
-                <p className='card-text'><small className='text-muted'>Date Added: {workout.date_added}</small></p>
-                <p className='card-text'><small className='text-muted'>Created By: {workout.created_by}</small></p>
-            </div>
-        </div>
-    </div>
-);
+import SearchBar from './searchbar';
+import WorkoutCard from './workoutcard';
+import WorkoutDropDown from './workoutFilter';
 
 // Main Component
 const WorkoutPlan = () => {
@@ -39,13 +10,14 @@ const WorkoutPlan = () => {
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
-        fetchData();
+        fetchData(searchQuery);
     }, [searchQuery])
 
     const fetchData = async (query = '') => {
         setIsLoading(true)
         const token = localStorage.getItem('access_token')
-        let url = `http://127.0.0.1:8000/workoutplans/${query ? `?search=${query}` : ''}`
+        let url = `http://127.0.0.1:8000/workoutplans/${query ? `?name=${query}` : ''}`
+        console.log(url)
 
         try {
             const response = await fetch(url, {
@@ -70,9 +42,23 @@ const WorkoutPlan = () => {
             <div style={{ margin: "2rem" }}>
                 <h1 style={{ textAlign: 'center' }}>Work Out Plans</h1>
             </div>
-
-            {/* Search Bar */}
-            <SearchBar onSearch={(query) => setSearchQuery(query)} />
+            <div className='row'>
+                {/* Search Bar */}
+                <div className='col-md-4'>
+                    <SearchBar onSearch={(query) => setSearchQuery(query)} />
+                </div>
+                {/* Workout Filter */}
+                <div className='col-md-4'>
+                    <WorkoutDropDown />
+                </div>
+                <div className='col-md-4'>
+                    <input
+                        type='text'
+                        className='form-control mb-3'
+                        placeholder='Another filter'
+                    />
+                </div>
+            </div>
 
             {/* Loading State */}
             {isLoading ? <div> Loading... </div> : (

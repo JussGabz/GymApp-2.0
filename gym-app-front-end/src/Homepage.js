@@ -1,10 +1,11 @@
 // HomePage.js
 import React from 'react';
 import Menu from './Menu';
-import Exercises from './component/exercises';
 import ImageSlideShow from './component/ImageSlideShow';
 import ExerciseGrid from './component/excercise_grid';
 import Footer from './component/footer';
+import WorkoutPlans from './component/workoutplans';
+import Exercises from './component/Exercises/Exercises';
 
 const HomePage = () => {
   return (
@@ -15,7 +16,8 @@ const HomePage = () => {
           <h1 style={{color: "white"}}>Workout Vlogs</h1>
           <div><ExerciseGrid /></div>
       </div>
-      <div>< Exercises /></div>
+      <div><Exercises /></div>
+      <div><WorkoutPlans /></div>
       <div> <Footer /></div>
     </div>
   );
