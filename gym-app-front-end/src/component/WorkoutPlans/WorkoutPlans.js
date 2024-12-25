@@ -35,7 +35,7 @@ function WorkoutPlans() {
                 }
             })
             if (!response.ok) throw new Error('Failed to fetch data')
-            const jsonData = await response.jso n()
+            const jsonData = await response.json()
             setData(jsonData)
         } catch (error) {
             console.error('Error fetrching data:', error)
