@@ -19,9 +19,9 @@ COPY gym-app-front-end/public ./public
 RUN npm install
 
 # Build for production
-RUN npm run build 
+# RUN npm run build 
 
 # install serve to run app
-RUN npm install -g serve
-#CMD [ "npm", "start" ] - run for development
-CMD ["serve", "-s", "build"]
+# RUN npm install -g serve
+CMD [ "npm", "start" ]
+# CMD ["serve", "-s", "build"]
