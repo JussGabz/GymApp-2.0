@@ -1,0 +1,25 @@
+/* components/SkeletonLoader.css */
+.skeleton-loader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.skeleton-card {
+    width: 30%;
+    height: 200px;
+    background: #ddd;
+    border-radius: 10px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        background-color: #f3f3f3;
+    }
+    50% {
+        background-color: #e0e0e0;
+    }
+    100% {
+        background-color: #f3f3f3;
+    }
+}
