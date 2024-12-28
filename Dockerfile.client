@@ -6,4 +6,4 @@ COPY gym-app-front-end/package.json ./
 COPY gym-app-front-end/src ./src
 COPY gym-app-front-end/public ./public
 RUN npm install
-CMD ["npm", "start"]
+CMD ["npm", "run", "build"]
