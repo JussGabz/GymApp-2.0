@@ -1,9 +1,27 @@
 # Build step #1: build the React front end
 FROM node:16-alpine AS build-step
+
+# Set work directory 
 WORKDIR /app
+
+#set environment vars
 ENV PATH /app/node_modules/.bin:$PATH
+
+#copy package.json to docker
 COPY gym-app-front-end/package.json ./
+#copy src to docker
 COPY gym-app-front-end/src ./src
+
+#copy public files to docker
 COPY gym-app-front-end/public ./public
+
+#install all node packages
 RUN npm install
-CMD ["npm", "run", "build"]
+
+# Build for production
+RUN npm run build 
+
+# install serve to run app
+RUN npm install -g serve
+#CMD [ "npm", "start" ] - run for development
+CMD ["serve", "-s", "build"]
