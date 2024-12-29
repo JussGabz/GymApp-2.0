@@ -9,14 +9,20 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 #copy package.json to docker
 COPY gym-app-front-end/package.json ./
+
+#install all node packages
+RUN npm install
+
 #copy src to docker
 COPY gym-app-front-end/src ./src
+
+# Copy build files
+COPY gym-app-front-end/build ./build
 
 #copy public files to docker
 COPY gym-app-front-end/public ./public
 
-#install all node packages
-RUN npm install
+
 
 # Build for production
 # RUN npm run build 
