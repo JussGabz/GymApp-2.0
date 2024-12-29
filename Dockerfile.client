@@ -14,13 +14,11 @@ COPY gym-app-front-end/package.json ./
 RUN npm install
 
 #copy src to docker
-COPY gym-app-front-end/src ./src
+COPY gym-app-front-end/ .
 
 # Copy build files
 # COPY gym-app-front-end/build ./build
 
-#copy public files to docker
-COPY gym-app-front-end/public ./public
 
 # Build for production
 RUN npm run build 
