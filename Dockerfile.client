@@ -16,12 +16,8 @@ RUN npm install
 #copy src to docker
 COPY gym-app-front-end/ ./
 
-# Copy build files
-# COPY gym-app-front-end/build ./build
-
-
 # Build for production
-# RUN npm run build 
+RUN npm run build 
 
 
 # install serve to run app
