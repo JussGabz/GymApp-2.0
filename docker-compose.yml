@@ -12,7 +12,6 @@ services:
       - 8000:8000
     volumes:
       - .:/app
-      - static_volume:/app/staticfiles
     depends_on:
       postgres-db:
         condition: service_healthy
@@ -42,7 +41,9 @@ services:
       dockerfile: Dockerfile.client
     ports:
       - "3000:3000"
+    volumes:
+      - ./static:/usr/src/app/build
 
 volumes:
-  static_volume:
+  static:
 
