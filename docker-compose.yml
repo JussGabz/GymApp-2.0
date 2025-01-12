@@ -42,7 +42,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./static:/usr/src/app/build
+      - ./static:/app/build
 
 volumes:
   static:
