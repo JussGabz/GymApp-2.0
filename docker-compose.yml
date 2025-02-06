@@ -39,10 +39,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.client
-    ports:
-      - "3000:3000"
     volumes:
-      - ./static:/app/build
+      - ./static:/static
+    restart: always
 
 volumes:
   static:
