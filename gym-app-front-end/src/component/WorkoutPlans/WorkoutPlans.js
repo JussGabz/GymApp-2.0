@@ -51,7 +51,7 @@ function WorkoutPlans() {
             <div>
                 <WorkoutPlanSearchBar onSearch={(query) => setSearchQuery(query)}/>    
             </div>
-            {/* {data ? <WorkoutPlanList workoutplans={data.results} /> : <div>No Data Available</div>} */}
+            {data ? <WorkoutPlanList workoutplans={data.results} /> : <div>No Data Available</div>}
             <div className="row rows-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                 {data.result.map((item) => (
                     <WorkoutCard key={item.id} workout={item} />
