@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SearchBar from "../../genericSearchBar";
 import { fetchWorkoutPlans } from "../../services/workoutplanService";
 
-function WorkoutPlanSearchBar() {
+function WorkoutPlanSearchBar({ onSearch }) {
     const [searchQuery, setSearchQuery] = useState('')
 
     const handleSearchChange = (newValue) => {
@@ -12,9 +12,12 @@ function WorkoutPlanSearchBar() {
     const handleSearch = async (query) => {
         console.log(`Searching for: ${query}`)
 
-        const data = await fetchWorkoutPlans()
+        // const data = await fetchWorkoutPlans()
+        const data = onSearch(searchQuery)
 
-        console.log(data.results)
+        console.log(data)
+
+        // console.log(data.results)
     }
 
     return (
