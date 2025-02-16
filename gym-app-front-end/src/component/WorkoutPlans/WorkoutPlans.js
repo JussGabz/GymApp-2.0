@@ -6,6 +6,7 @@ import WorkoutPlanList from "./WorkoutPlanList";
 import WorkoutPlanSearchBar from "./WorkoutPlanSearch";
 import WorkoutCard from "../workoutcard";
 import { getToken } from "../../utils/tokenUtils";
+import { fetchWorkoutPlans } from "../../services/workoutplanService";
 
 // Main Workout Plan Component -> Render the Header
 // Fetch the Data using useFetchWorkoutPlans
@@ -23,22 +24,18 @@ function WorkoutPlans() {
         fetchData(searchQuery);
     }, [searchQuery])
 
-    const fetchData = async (query = '') => {
+    const fetchData = async () => {
         const token = getToken()
-        let url = `http://127.0.0.1:8000/workoutplans/${query ? `?name=${query}` : ''}`
+        // let url = `http://127.0.0.1:8000/workoutplans/${query ? `?name=${query}` : ''}`
         try {
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`,
-                }
-            })
+            const response = await fetchWorkoutPlans(searchQuery)
+            console.log(response)
+            setData(response)
             if (!response.ok) throw new Error('Failed to fetch data')
             const jsonData = await response.json()
             setData(jsonData)
         } catch (error) {
-            console.error('Error fetrching data:', error)
+            console.error('Error fetching data:', error)
         } finally {
 
         }
@@ -49,15 +46,19 @@ function WorkoutPlans() {
                 <h1 style={{ textAlign: "center" }}>Workout Plans</h1>
             </div>
             <div>
-                <WorkoutPlanSearchBar onSearch={(query) => setSearchQuery(query)}/>    
+                <WorkoutPlanSearchBar onSearch={setSearchQuery}/>    
             </div>
-            {data ? <WorkoutPlanList workoutplans={data.results} /> : <div>No Data Available</div>}
+            {/* {data ? <WorkoutPlanList workoutplans={data.results} /> : <div>No Data Available</div>} */}
+            { data ? (
             <div className="row rows-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                {data.result.map((item) => (
+                {data.results.map((item) => (
                     <WorkoutCard key={item.id} workout={item} />
                 ))
                 }
             </div>
+            ) : (
+                <div>No Data Available</div>
+            )}
         </div>
     )
 }
