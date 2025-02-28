@@ -1,19 +1,28 @@
 import { getToken } from "../utils/tokenUtils";
-import { EXERCISES_ENDPOINT } from "../config/apiConfig";
+import { EXERCISES_ENDPOINT, WORKOUT_PLANS_ENDPOINT } from "../config/apiConfig";
 
 // Fetch Exercises from backend exercise endpoint
 // Isolate the API Call Logic -> Make it easy to replace or modify if API changes
-export const fetchExercises = async () => {
+export const fetchExercises = async ( searchQuery = "") => {
     const token = getToken()
-    const response = await fetch( EXERCISES_ENDPOINT, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
+
+    const url = searchQuery
+        ? `${EXERCISES_ENDPOINT}?name=${encodeURIComponent(searchQuery)}`
+        : EXERCISES_ENDPOINT;
+    console.log(url)
+    try {
+        const response = await fetch( url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            }
+        })
+        if (!response.ok) {
+            throw new Error('Failed to fetch exercisres')
         }
-    })
-    if (!response.ok) {
-        throw new Error('Failed to fetch exercises')
+        return await response.json()
+    } catch (error) {
+        console.error()
     }
-    return await response.json()
 }
