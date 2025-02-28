@@ -5,6 +5,7 @@ from .models import Exercise, WorkoutPlan
 
 class ExerciseFilter(django_filters.FilterSet):
     target_area = django_filters.ChoiceFilter(choices=TARGET_AREA_CHOICES)
+    name = django_filters.CharFilter(lookup_expr="icontains")
 
     class Meta:
         model = Exercise
