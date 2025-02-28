@@ -25,8 +25,6 @@ function WorkoutPlans() {
     }, [searchQuery])
 
     const fetchData = async () => {
-        const token = getToken()
-        // let url = `http://127.0.0.1:8000/workoutplans/${query ? `?name=${query}` : ''}`
         try {
             const response = await fetchWorkoutPlans(searchQuery)
             console.log(response)
