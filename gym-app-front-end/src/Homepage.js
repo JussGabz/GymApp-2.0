@@ -17,7 +17,6 @@ const HomePage = () => {
           <div><ExerciseGrid /></div>
       </div>
       <div><Exercises /></div>
-      <div><WorkoutPlans /></div>
       <div> <Footer /></div>
     </div>
   );
