@@ -42,8 +42,7 @@ Ensure you have the following installed:
 ### Clone the Repository
 
 ```sh
-git clone https://github.com/yourusername/jussgym.git
-cd jussgym
+git clone https://github.com/JussGabz/GymApp-2.0.git
 ```
 
 ### Backend Setup
@@ -53,7 +52,6 @@ cd backend
 python -m venv venv
 source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 pip install -r requirements.txt
-cp .env.example .env  # Update database credentials
 python manage.py migrate
 python manage.py runserver
 ```
@@ -83,12 +81,4 @@ The application is deployed on AWS using:
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request.
-
-## License
-
-This project is licensed under the MIT License.
-
-## Contact
-
-For inquiries, reach out at [your email].
 
