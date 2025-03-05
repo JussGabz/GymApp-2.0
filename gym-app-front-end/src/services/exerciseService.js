@@ -1,5 +1,5 @@
 import { getToken } from "../utils/tokenUtils";
-import { EXERCISES_ENDPOINT, WORKOUT_PLANS_ENDPOINT } from "../config/apiConfig";
+import { EXERCISES_ENDPOINT } from "../config/apiConfig";
 
 // Fetch Exercises from backend exercise endpoint
 // Isolate the API Call Logic -> Make it easy to replace or modify if API changes
