@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
-import useFetchWorkoutPlans from "../../hooks/useFetchWorkoutPlans";
-import SkeletonLoader from "../SkeletonLoader";
 import Error from "../Error";
-import WorkoutPlanList from "./WorkoutPlanList";
 import WorkoutPlanSearchBar from "./WorkoutPlanSearch";
-import WorkoutCard from "../workoutcard";
-import { getToken } from "../../utils/tokenUtils";
+import WorkoutCard from "./WorkoutPlanCard";
 import { fetchWorkoutPlans } from "../../services/workoutplanService";
 
 // Main Workout Plan Component -> Render the Header
