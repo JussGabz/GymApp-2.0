@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from './searchbar';
-import WorkoutCard from './workoutcard';
+import WorkoutCard from './WorkoutPlans/WorkoutPlanCard';
 import WorkoutDropDown from './workoutFilter';
 
 // Main Component
