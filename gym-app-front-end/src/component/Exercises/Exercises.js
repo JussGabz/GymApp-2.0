@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
-import useFetchExercises from "../../hooks/useFetchexercises";
-import SkeletonLoader from "../SkeletonLoader";
 import Error from "../Error";
-import ExerciseList from "./ExerciseList";
 import { fetchExercises } from "../../services/exerciseService";
 import ExerciseSearchBar from "./ExerciseSearch";
-import WorkoutCard from "../workoutcard";
 import ExerciseCard from "./ExerciseCard";
 
 //Main Exercise Component -> Render the Headder
