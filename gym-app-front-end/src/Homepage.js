@@ -6,17 +6,18 @@ import ExerciseGrid from './component/excercise_grid';
 import Footer from './component/footer';
 import WorkoutPlans from './component/workoutplans';
 import Exercises from './component/Exercises/Exercises';
+import TrainingProgram from './component/TrainingProgram/TrainingProgram';
 
 const HomePage = () => {
   return (
     <div>
       <div>< Menu /></div>
-      <div><ImageSlideShow /></div>
+      <div><ImageSlideShow /></div>g
       <div style={{backgroundColor: "black", textAlign: "center", paddingTop: "10px"}}>
           <h1 style={{color: "white"}}>Workout Vlogs</h1>
-          <div><ExerciseGrid /></div>
       </div>
-      <div><Exercises /></div>
+      <div><ExerciseGrid /></div>
+      <div><TrainingProgram /></div>
       <div> <Footer /></div>
     </div>
   );
