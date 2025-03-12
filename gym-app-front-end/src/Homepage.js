@@ -4,8 +4,6 @@ import Menu from './Menu';
 import ImageSlideShow from './component/ImageSlideShow';
 import ExerciseGrid from './component/excercise_grid';
 import Footer from './component/footer';
-import WorkoutPlans from './component/workoutplans';
-import Exercises from './component/Exercises/Exercises';
 import TrainingProgram from './component/TrainingProgram/TrainingProgram';
 
 const HomePage = () => {
