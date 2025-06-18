@@ -5,7 +5,7 @@ import './css/Menu.css'
 const Menu = () => {
   return (
     <nav className="menu">
-      <div className="logo">Juss Gym</div>
+      <div className="logo"><a href='/'>Juss Gym</a></div>
       <ul className="menu-links">
         <li className="menu-item"><a href="/exercises">Exercises</a></li>
         <li className="menu-item"><a href="/workouts">Workout Plans</a></li>
