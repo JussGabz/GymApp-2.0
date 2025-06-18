@@ -9,7 +9,7 @@ function ExerciseGrid() {
             <div>
                 <video style={styles.video}>
                     <source
-                        src='https://d164p06em7ia.cloudfront.net/C0201.MP4'
+                        src='https://d2hozp596kp382.cloudfront.net/C0142.MP4'
                         type='video/mp4'
                     />
                 </video>
@@ -23,7 +23,7 @@ function ExerciseGrid() {
             <div>
                 <video style={styles.video}>
                     <source
-                        src='https://d164p06em7ia.cloudfront.net/C0142.MP4'
+                        src='https://d2hozp596kp382.cloudfront.net/C0142.MP4'
                         type='video/mp4'
                     />
                 </video>
@@ -37,7 +37,7 @@ function ExerciseGrid() {
             <div>
                 <video style={styles.video}>
                     <source
-                        src='https://d164p06em7ia.cloudfront.net/C0143.MP4'
+                        src='https://d2hozp596kp382.cloudfront.net/C0142.MP4'
                         type='video/mp4'
                     />
                 </video>
@@ -55,15 +55,18 @@ function ExerciseGrid() {
 const styles = {
     videoContainer: {
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '50vh',
-        // backgroundColor: '#000'
-    },
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        flexWrap: 'nowrap',
+        width: '100vw',
+        padding: '20px',
+        boxSizing: 'border-box',
+        gap: '20px'
+      },      
     video: {
-        maxWidth: '607px',
-        maxHeight: '341px',
-        marginRight: "20px"
+        width: '100%',
+        height: 'auto',
+        borderRadius: '8px'
     },
     videoCaption: {
         fontWeight: "bold",
@@ -73,7 +76,15 @@ const styles = {
         fontSize: "12px",
         lineHeight: "16px",
         marginTop: "4px"
-    }
+    },
+    videoItem: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        flex: '1 1 0',
+        maxWidth: '30%',  // Adjust based on how many videos you're showing
+      }
+      
 }
 
 export default ExerciseGrid
