@@ -4,8 +4,10 @@ import { Button } from "react-bootstrap"
 const TrainingProgram = () => {
     return (
         <div style={{ display: "flex" }}>
-            <div style={{ flex: 1, padding: "10px", borderRight: "1px solid black" }}>
-                <div>Thanks</div>
+            <div style={{ flex: 1, padding: "10px", borderRight: "2px solid black" }}>
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+                    <img src={"https://d2hozp596kp382.cloudfront.net/1.png"} alt="" style={{ width: '100px', borderRadius: '8px'}}/>
+                </div>
             </div>
             <div style={{ flex: 1, padding: "10px" }}>
                 <p>START TODAY</p>
