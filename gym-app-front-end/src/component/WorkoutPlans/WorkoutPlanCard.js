@@ -5,6 +5,7 @@ const WorkoutCard = ({ workout }) => (
             <img src='images/juss-gym-logo.png' className='card-img-top' alt='...' />
             <div className='card-body'>
                 <h5 className='card-title'>Workout Plans: {workout.name}</h5>
+                <h6>Exercises:</h6>
                 {workout.exercises.map(exercise => (
                     <p key={exercise.id} className='card-text'>{exercise.name}</p>
                 ))}
