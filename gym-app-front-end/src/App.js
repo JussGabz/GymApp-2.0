@@ -7,6 +7,7 @@ import Homepage from './Homepage';
 import WorkoutPage from './WorkoutPage'
 import ExercisePage from './ExercisePage'
 import LogInPage from './LogInPage';
+import CreateWorkoutPlan from './WorkoutPlanCreationPage';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <Routes>
         <Route exact path="/" element={<Homepage />} />
         <Route path="/workouts" Component={WorkoutPage} />
+        <Route path='/addworkoutplan' Component={CreateWorkoutPlan} />
         <Route path="/exercises" Component={ExercisePage} />
         <Route path="/login" Component={LogInPage} />
       </Routes>
