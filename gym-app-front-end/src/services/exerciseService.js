@@ -3,13 +3,9 @@ import { EXERCISES_ENDPOINT } from "../config/apiConfig";
 
 // Fetch Exercises from backend exercise endpoint
 // Isolate the API Call Logic -> Make it easy to replace or modify if API changes
-export const fetchExercises = async ( searchQuery = "") => {
+export const fetchExercises = async ( url = EXERCISES_ENDPOINT) => {
     const token = getToken()
 
-    const url = searchQuery
-        ? `${EXERCISES_ENDPOINT}?name=${encodeURIComponent(searchQuery)}`
-        : EXERCISES_ENDPOINT;
-    console.log(url)
     try {
         const response = await fetch( url, {
             method: 'GET',
