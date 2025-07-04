@@ -10,10 +10,11 @@ const HomePage = () => {
   return (
     <div>
       <div>< Menu /></div>
-      <div><ImageSlideShow /></div>g
+      <div><ImageSlideShow /></div>
       <div style={{backgroundColor: "black", textAlign: "center", paddingTop: "10px"}}>
           <h1 style={{color: "white"}}>Workout Vlogs</h1>
       </div>
+      <div>sfhjbsjhv</div>
       <div><ExerciseGrid /></div>
       <div><TrainingProgram /></div>
       <div> <Footer /></div>
