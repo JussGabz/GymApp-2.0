@@ -11,6 +11,7 @@ function CreateWorkoutPlan() {
             <p>dsdd</p>
             <p>dssdvd</p>
             <ExerciseDropdown/>
+            <WorkoutTypeDropdown/>
             <WorkoutForm/>
             
 
