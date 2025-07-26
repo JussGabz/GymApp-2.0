@@ -6,6 +6,7 @@ from . import views
 router = DefaultRouter()
 router.register(r"exercises", views.ExerciseViewSet, basename="exercise")
 router.register(r"workoutplans", views.WorkoutPlanViewSet, basename="workoutplan")
+router.register(r"workout-types", views.WorkoutPlanTypeViewSet, basename='workout-type-list')
 
 
 urlpatterns = [

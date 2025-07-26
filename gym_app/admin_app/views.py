@@ -15,9 +15,11 @@ from gym_app.admin_app.serializers import (
     UserSerializer,
     ExerciseSerializer,
     WorkoutPlanSerializer,
+    WorkoutTypeChoicesSerializer,
 )
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework import generics
+from rest_framework.response import Response
 
 
 class CreateUserView(generics.CreateAPIView):
@@ -62,3 +64,17 @@ class WorkoutPlanViewSet(EnablePartialUpdateMixin, viewsets.ModelViewSet):
     @action(detail=True, methods=["get", "delete", "put"], url_path="myworkoutplans")
     def my_workout_plan_action(self, request, *args, **kwargs):
         return get_user_workout_plan(request, **kwargs)
+
+class WorkoutPlanTypeViewSet(viewsets.ViewSet):
+    def get(self, request, *args, **kwargs):
+        # Extract the choices from field
+        field = WorkoutTypeChoicesSerializer().fields['workout_type']
+        choices = [{"value": key, "label": label} for key, label in field.choices.items()]
+
+        return Response(choices)
+    
+    def list(self, request):
+        field = WorkoutTypeChoicesSerializer().fields['workout_type']
+        choices = [{"value": key, "label": label} for key, label in field.choices.items()]
+
+        return Response(choices)

@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from .models import Exercise, WorkoutPlan
 from rest_framework import serializers
 from gym_app.settings import DATETIME_FORMAT
+from .utils.exercise_utils import TARGET_AREA_CHOICES, WORKOUT_TYPE_CHOICES
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -22,6 +23,8 @@ class ExerciseSerializer(serializers.ModelSerializer):
         model = Exercise
         fields = ["id", "name", "target_area", "date_added"]
 
+class WorkoutTypeChoicesSerializer(serializers.Serializer):
+    workout_type = serializers.ChoiceField(choices=WORKOUT_TYPE_CHOICES)
 
 class WorkoutPlanSerializer(serializers.ModelSerializer):
 
@@ -31,6 +34,7 @@ class WorkoutPlanSerializer(serializers.ModelSerializer):
     )
     created_by = serializers.StringRelatedField(read_only=True)
     date_added = serializers.DateTimeField(read_only=True, format=DATETIME_FORMAT)
+    workout_type = serializers.SerializerMethodField()
 
     class Meta:
         model = WorkoutPlan
@@ -60,3 +64,6 @@ class WorkoutPlanSerializer(serializers.ModelSerializer):
             instance.exercises.set(exercise_ids)
 
         return super().update(instance, validated_data)
+
+    def get_workout_type(self, obj):
+        return obj.get_workout_type_display()
